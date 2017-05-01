@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration>
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%-d{yyyy-MM-dd HH:mm:ss.SSS} %-6p%c:%L %X{connectionCount} - %m%n" />
+		</layout>
+	</appender> 
+	
+	<appender name="error" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="${catalina.home}/logs/house/error.log" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd" />
+        <param name="threshold" value="error"/>
+        <param name="append" value="true"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] %-6p%c:%L - %m%n" />
+        </layout>
+    </appender>
+    
+    <appender name="logic" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="${catalina.home}/logs/housedata/logic.log" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd" />
+        <param name="threshold" value="info"/>
+        <param name="append" value="true"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] %-6p%c:%L - %m%n" />
+        </layout>
+    </appender>
+    
+    <appender name="stat" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="${catalina.home}/logs/housedata/stat.log" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd" />
+        <param name="threshold" value="info"/>
+        <param name="append" value="true"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] %-6p%c:%L %X{vpsId} - %X{key} - %X{ip} - %X{connectionCount} - %m%n" />
+        </layout>
+    </appender>
+    
+    <logger name="statLog" additivity="false">
+		<level value="info" />
+		<appender-ref ref="stat" />
+	</logger>
+    
+	<root>
+        <level value="DEBUG" />
+        <appender-ref ref="error" />
+		<appender-ref ref="default" />
+		<appender-ref ref="logic" />
+        <appender-ref ref="console"/>
+	</root>
+</log4j:configuration>

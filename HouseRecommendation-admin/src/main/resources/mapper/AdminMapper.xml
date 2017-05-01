@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--resultType进行结果映射的时候，需要查询出的列名和映射的对象的属性名一致，才能映射成功。
+resultMap进行结果映射的时候，不需要查询的列名和映射的属性名一致。但是要声明一个resultMap来对列名和属性名进行映射。
+比如下面的resultMap，column就是sql查询出来的名称，但是property才是真正的属性名-->
+<mapper namespace="com.glory.admin">
+
+    <resultMap id="UserBaseMap" type="com.fso.bean.User">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
+        <result column="user_email" property="userEmail" jdbcType="VARCHAR"/>
+        <result column="user_pwd" property="userPwd" jdbcType="VARCHAR"/>
+        <result column="pwd_salt" property="pwdSalt" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="modify_time" property="modifyTime" jdbcType="DATE"/>
+        <result column="is_delete" property="isDelete" jdbcType="SMALLINT"></result>
+    </resultMap>
+    <!--select:表示一个MappedStatement对象
+       id ：表示statement的唯一标识-->
+    <!--#{}：表示一个占位符
+    #{id}:表示输入参数的参数名称,如果该参数类型是简单类型，那么参数名称可以任意
+    parameterType表示输入参数的类型
+    当sql中使用like来限制条件的时候，就使用like '%${user.username}%'这种形式-->
+    <select id="selectUserById" parameterType="java.lang.Long" resultMap="UserBaseMap">
+        SELECT * FROM t_user
+        WHERE id = #{userId}
+    </select>
+
+
+    <select id="selectUserByPhoneOrEmail" resultMap="UserBaseMap">
+        SELECT * FROM t_user
+        WHERE user_email = #{emailOrPhone} OR user_phone = #{emailOrPhone}
+        AND user_state = #{state}
+    </select>
+
+    <select id="selectAllUser" resultMap="UserBaseMap">
+        SELECT * FROM t_user
+    </select>
+
+
+</mapper>
