@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="HouseRecommendation-admin:war">
+    <output-path>$PROJECT_DIR$/HouseRecommendation-admin/target</output-path>
+    <root id="archive" name="HouseRecommendation-admin.war">
+      <element id="artifact" artifact-name="HouseRecommendation-admin:war exploded" />
+    </root>
+  </artifact>
+</component>
