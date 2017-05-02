@@ -12,8 +12,7 @@
 	</settings>
 
 	<typeAliases>
-		 <typeAlias alias="Param" type="com.cardniu.fundhouse.business.entity.Param"/>
-		 <typeAlias alias="Record" type="com.cardniu.fundhouse.business.entity.Record"/>
+		 <typeAlias alias="Admin" type="com.glory.admin.entity.Admin"/>
 	</typeAliases>
 
 </configuration>

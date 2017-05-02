@@ -21,33 +21,16 @@
      http://www.springframework.org/schema/aop/spring-aop-4.3.xsd"
 	   default-lazy-init="false">
 
+	<description>psring公共配置</description>
+
 	<aop:aspectj-autoproxy/>
 
 	<!-- 扫描范围 -->
 	<context:component-scan base-package="com.glory.admin"/>
-    <context:property-placeholder location="classpath:config/dev/config.properties"/>
-    <util:properties id="settings" location="classpath:config/dev/config.properties"/>
     <!-- 定时器开关 开始 -->
     <task:annotation-driven />
-
-	<!-- 引入配置文件
-	<bean id="propertyConfigurer"
-		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:config/dev/jdbc.properties" />
-	</bean> -->
-    <!-- 加载多个properties文件  -->
-   <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-       <property name="locations">
-           <list>
-               <value>classpath:config/dev/config.properties</value>
-               <value>classpath:config/dev/jdbc.properties</value>
-           </list>
-       </property>
-       <property name="fileEncoding" value="UTF-8"/>
-   </bean>
-   <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
-       <property name="properties" ref="configProperties"/>
-   </bean>
+    <context:property-placeholder location="classpath:config.properties"/>
+    <util:properties id="settings" location="classpath:config.properties"/>
 
 	<bean id="houseDataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
 		<property name="driverClassName" value="${mysql.jdbc.driver}" />
@@ -79,12 +62,12 @@
 		<property name="filters" value="stat,log4j" />
 	</bean>
 
-	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+	<!-- spring和MyBatis整合 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="houseDataSource" />
 		<property name="mapperLocations" value="classpath*:mapper/*.xml"/>
 		<property name="configLocation" value="classpath:mybatis-config.xml"/>
-        <!-- 物理分页插件 -->
+        <!-- 分页插件 -->
 		<property name="plugins">
 			<array>
 				<bean class="com.github.pagehelper.PageHelper">
@@ -111,21 +94,20 @@
 		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 		  p:dataSource-ref="houseDataSource"/>
 
-    <!-- redis处理类 -->
+    <!-- redis处理类  -->
 	<bean id="jedisTemplate" class="com.glory.admin.redis.JedisTemplate">
-		<constructor-arg index="0" ref="sentinelJedisPool" />
+		<constructor-arg index="0" ref="JedisPool"/>
 	</bean>
-	<!-- Jedis连接池 -->
-	<bean id="sentinelJedisPool" class="redis.clients.jedis.JedisSentinelPool">
-		<constructor-arg index="0" value="#{settings['redis.sentinel.master.name']}" />
-		<constructor-arg index="1" value="#{settings['redis.sentinels'].split(',')}" />
-		<constructor-arg index="2" ref="jedisPoolConfig" />
+	<!-- Jedis连接池  -->
+	<bean id="JedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg index="0" ref="jedisPoolConfig" />
+		<constructor-arg index="1" value="#{settings['redis.host']}" />
+		<constructor-arg index="2" value="#{settings['redis.port']}" type="int" />
 		<constructor-arg index="3" value="#{settings['redis.timeout']}" type="int" />
 		<constructor-arg index="4" value="#{settings['redis.password']}" />
-		<constructor-arg index="5" value="#{settings['redis.database']}" type="int" />
 	</bean>
 
-	<!-- Jedis连接池配置 -->
+	<!-- Jedis连接池配置  -->
 	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
 		<property name="maxTotal" value="100" />
 		<property name="maxIdle" value="5" />
