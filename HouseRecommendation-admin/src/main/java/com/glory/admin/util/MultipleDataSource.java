@@ -5,7 +5,7 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 /**
  * 设置切换数据库数据源
  * @author glory
- * @date 2017-03-27
+ * @date 2017-04-27
  */
 public class MultipleDataSource extends AbstractRoutingDataSource {
 	public static final String DATA_SOURCE_ADMIN = "adminDataSource";

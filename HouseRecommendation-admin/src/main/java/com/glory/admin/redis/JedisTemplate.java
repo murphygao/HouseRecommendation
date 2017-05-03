@@ -9,6 +9,7 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import redis.clients.jedis.*;
 import redis.clients.jedis.exceptions.JedisConnectionException;
 import redis.clients.util.Pool;
@@ -23,7 +24,7 @@ import java.util.Map.Entry;
  * @author Glory
  * @create 2017-04-21 19:33
  */
-//@Service
+@Service
 public class JedisTemplate {
 	private static Logger log = LoggerFactory.getLogger(JedisTemplate.class);
 

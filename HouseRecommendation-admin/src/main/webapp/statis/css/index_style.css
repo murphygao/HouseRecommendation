@@ -1,0 +1,186 @@
+@charset "UTF-8";
+
+/** 全局样式 */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p, span, a, b, strong, object, iframe, label, img, select, form, input, textarea, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, menu, nav, section, summary, time, mark, audio, video {margin:0;padding:0}
+article, aside, details, figcaption, figure, footer, header, menu, nav, section {display:block}
+table {border-collapse:collapse;border-spacing:0}
+ul, ol {list-style:none outside none}
+fieldset, img {border:0 none}
+textarea {resize:none}
+input,button,select,textarea{outline:none}
+input:focus, select:focus, textarea:focus {outline:0 none}
+
+a,a:hover, a:link, a:visited, a:active {
+    text-decoration:none;
+    color: #000;
+}
+
+ul,li,a {
+    list-style-type: none;
+}
+
+html,body {
+    height:100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+div {
+    box-sizing: border-box;
+}
+
+.gl-container {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+/** header样式 */
+.gl-header {
+    width: 100%;
+    height: 10%;
+    background: 0 0 url("../images/header-title.jpg") no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+
+}
+.gl-header .gl-header-wrap {
+    height: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+/**内容样式*/
+.gl-content-box {
+    height: 90%;
+    position: relative;
+}
+
+
+
+
+/** meun样式 */
+.gl-content-box .gl-meun {
+    height: 100%;
+    width: 18%;
+    position: relative;
+    background-color: #424F63;
+    background-color: rgba(66, 79, 99, 1);
+    border-top: 1px solid rgba(33, 33, 33, .5);
+    float: left;
+}
+.gl-content-box .gl-meun .gl-meun-content {
+
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.gl-meun-content .gl-list-group-item {
+    position: relative;
+    display: block;
+    color: #FFF;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+}
+
+.gl-meun-content dl dt a.gl-list-group-item {
+    padding: 15px 0 15px 60px;
+    background-color: #424F63;
+    font-size: 16px;
+}
+.gl-meun-content dl dd a.gl-list-group-item {
+    padding: 15px 0 15px 60px;
+    background-color: #353F4F;
+    background-color: rgba(53, 63, 79, 1);
+    font-size: 12px;
+}
+.gl-meun-content dl{
+    border-bottom: 1px solid #3C3F41;
+}
+
+
+.gl-meun-content dl a.gl-list-group-item:hover,a.gl-list-group-item:active {
+    background-color: #2A323F;
+    background-color: rgba(42, 50, 63, 1);
+    color: #65CEA7;
+
+}
+dl .gl-icon {
+    display: inline-block;
+    position: absolute;
+}
+dt .gl-icon-left {
+    left: 16px;
+}
+dt .gl-icon-right {
+    right: 18px;
+    -webkit-transition: 1s ease all;
+    -moz-transition: 1s ease all;
+    -o-transition: 1s ease all;
+    transition: 1s ease all;
+}
+dd .gl-icon-left {
+    left: 30px;
+}
+
+dd .gl-icon-reversal {
+    -webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.gl-icon-rotate-down {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.gl-icon-rotate-up {
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+}
+
+
+/** content样式 */
+.gl-content-box .gl-content {
+    height: 100%;
+    width: 82%;
+    float: left;
+    overflow: hidden;
+    border-top: 1px solid rgba(126, 128, 130, .5);
+  /*   background-color: #EFF0F4;
+    background-color: rgba(239, 240, 244, 1); */
+}
+.gl-content-box .gl-content > .gl-content-box {
+	 height: 100%;
+    width: 100%;
+    border: none;
+} 
+.gl-content-box .gl-content .gl-content-wrap {
+    height: auto;
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+}
+.gl-content-box .gl-content .gl-content-wrap a {
+	color:#3385FF;
+}
+.gl-content-box .gl-content .gl-content-wrap a:hover {
+	color:#2A3AF0;
+	 text-decoration: solid;
+}
+
+/**滚动条样式覆盖*/
+.mCSB_inside > .mCSB_container {
+    margin-right: 0;
+}
+.mCSB_scrollTools {
+    width: 6px;
+}
