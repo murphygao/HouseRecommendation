@@ -67,19 +67,6 @@
 		<property name="dataSource" ref="houseDataSource" />
 		<property name="mapperLocations" value="classpath:mapper/*.xml"/>
 		<property name="configLocation" value="classpath:mybatis-config.xml"/>
-        <!-- 分页插件 -->
-		<property name="plugins">
-			<array>
-				<bean class="com.github.pagehelper.PageHelper">
-					<property name="properties">
-						<value>
-							dialect=mysql
-							reasonable=true
-						</value>
-					</property>
-				</bean>
-			</array>
-		</property>
 	</bean>
 
     <!-- 数据库会话创建工厂 -->

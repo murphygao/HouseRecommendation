@@ -7,6 +7,7 @@ import com.glory.admin.service.CacheService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
  * @author Glory
  * @create 2017-05-03 18:33
  **/
+@Service
 public class CacheServiceImpl implements CacheService {
 
     private static final Logger logger = LoggerFactory.getLogger(AdminServiceImpl.class);
