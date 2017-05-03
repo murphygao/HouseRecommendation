@@ -21,7 +21,7 @@
      http://www.springframework.org/schema/aop/spring-aop-4.3.xsd"
 	   default-lazy-init="false">
 
-	<description>psring公共配置</description>
+	<description>spring公共配置</description>
 
 	<aop:aspectj-autoproxy/>
 
@@ -65,7 +65,7 @@
 	<!-- spring和MyBatis整合 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="houseDataSource" />
-		<property name="mapperLocations" value="classpath*:mapper/*.xml"/>
+		<property name="mapperLocations" value="classpath:mapper/*.xml"/>
 		<property name="configLocation" value="classpath:mybatis-config.xml"/>
         <!-- 分页插件 -->
 		<property name="plugins">
@@ -96,10 +96,10 @@
 
     <!-- redis处理类  -->
 	<bean id="jedisTemplate" class="com.glory.admin.redis.JedisTemplate">
-		<constructor-arg index="0" ref="JedisPool"/>
+		<constructor-arg index="0" ref="jedisPool"/>
 	</bean>
 	<!-- Jedis连接池  -->
-	<bean id="JedisPool" class="redis.clients.jedis.JedisPool">
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
 		<constructor-arg index="0" ref="jedisPoolConfig" />
 		<constructor-arg index="1" value="#{settings['redis.host']}" />
 		<constructor-arg index="2" value="#{settings['redis.port']}" type="int" />

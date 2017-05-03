@@ -14,5 +14,11 @@ public interface AdminMapper {
 
     Admin selectAdminById(long id);
 
+    Admin selectAdminByName(String name);
+
     List<Admin> selectAllAdmin();
+
+    void insertAdmin(Admin admin);
+
+    void updateAdmin(Admin admin);
 }

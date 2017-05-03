@@ -12,6 +12,11 @@ resultMap进行结果映射的时候，不需要查询的列名和映射的属�
         <result column="add_date_time" property="addDateTime" jdbcType="TIMESTAMP"/>
         <result column="login_date_time" property="loginDateTime" jdbcType="TIMESTAMP"/>
     </resultMap>
+
+    <sql id="Base_Column_List">
+        admin_id, admin_name, admin_password, add_date_time, login_date_time
+    </sql>
+
     <!--select:表示一个MappedStatement对象
        id ：表示statement的唯一标识-->
     <!--#{}：表示一个占位符
@@ -19,12 +24,82 @@ resultMap进行结果映射的时候，不需要查询的列名和映射的属�
     parameterType表示输入参数的类型
     当sql中使用like来限制条件的时候，就使用like '%${user.username}%'这种形式-->
     <select id="selectAdminById" parameterType="java.lang.Long" resultMap="AdminBaseMap">
-        SELECT * FROM t_admin
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_admin
         WHERE admin_id = #{id}
     </select>
 
-    <select id="selectAllAdmin" resultMap="AdminBaseMap">
-        SELECT * FROM t_admin
+    <select id="selectAdminByName" parameterType="java.lang.String" resultMap="AdminBaseMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_admin
+        WHERE admin_name = #{name}
     </select>
+
+    <select id="selectAllAdmin" resultMap="AdminBaseMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_admin
+    </select>
+
+    <insert id="insertAdmin" parameterType="com.glory.admin.entity.Admin" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_admin
+        <trim  prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null" >
+                admin_id,
+            </if>
+            <if test="name != null" >
+                admin_name,
+            </if>
+            <if test="password != null" >
+                admin_password,
+            </if>
+            <if test="addDateTime != null" >
+                add_date_time,
+            </if>
+            <if test="loginDateTime != null" >
+                login_date_time,
+            </if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="addDateTime != null" >
+                #{addDateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="loginDateTime != null" >
+                #{loginDateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateAdmin" parameterType="com.glory.admin.entity.Admin">
+        UPDATE t_admin
+        <set>
+            <if test="name != null" >
+                admin_name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                admin_password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="addDateTime != null" >
+                add_date_time = #{addDateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="loginDateTime != null" >
+                login_date_time = #{loginDateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where admin_id = #{id,jdbcType=INTEGER}
+    </update>
+
+
 
 </mapper>

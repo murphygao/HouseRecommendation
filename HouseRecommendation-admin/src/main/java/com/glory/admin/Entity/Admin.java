@@ -25,13 +25,11 @@ public class Admin {
         super();
     }
 
-    public Admin(long id, String name, String password, Date addDateTime, Date loginDateTime) {
+    public Admin(String name, String password) {
         super();
-        this.id = id;
         this.name = name;
         this.password = password;
-        this.addDateTime = addDateTime;
-        this.loginDateTime = loginDateTime;
+        this.addDateTime = new Date();
     }
 
     public void setId(long id) {
