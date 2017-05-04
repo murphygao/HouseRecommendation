@@ -1,18 +1,17 @@
 package com.glory.admin.exception;
 
-import static org.slf4j.LoggerFactory.getLogger;
+import org.slf4j.Logger;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.slf4j.Logger;
-import org.springframework.web.servlet.HandlerExceptionResolver;
-import org.springframework.web.servlet.ModelAndView;
+import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * 统一异常处理，有效地针对异步和非异步请求
@@ -29,26 +28,32 @@ import org.springframework.web.servlet.ModelAndView;
  * @date 2017-03-27
  */
 public class MyExceptionHandler implements HandlerExceptionResolver {
+
 	private static final Logger logger = getLogger(MyExceptionHandler.class);
-	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
-			Exception ex) {
+
+	@Override
+	public ModelAndView resolveException(HttpServletRequest request,
+										 HttpServletResponse response,
+										 Object handler,
+										 Exception ex) {
+
 		logger.error("操作出现异常:{}",ex.getMessage());
 		Map<String, Object> model = new HashMap<>();
 		model.put("ex", ex);
 		//是否异步请求
-		 if (!(request.getHeader("accept").indexOf("application/json") > -1 || (request  
+		 if (!(request.getHeader("accept").contains("application/json") || (request
                  .getHeader("X-Requested-With")!= null && request  
-                 .getHeader("X-Requested-With").indexOf("XMLHttpRequest") > -1))) {
+                 .getHeader("X-Requested-With").contains("XMLHttpRequest")))) {
 			    // 根据不同错误转向不同页面
 				if(ex instanceof BusinessException) {
 					response.setStatus(1001);//业务异常返回 1001
-					return new ModelAndView("WEB-INF/jsp/exception/error-system", model);
+					return new ModelAndView("WEB-INF/page/exception/error-system", model);
 				}else if(ex instanceof IllegalParameterException) {
 					response.setStatus(1002);//参数异常返回 1002
-					return new ModelAndView("WEB-INF/jsp/exception/error-parameter", model);
+					return new ModelAndView("WEB-INF/page/exception/error-parameter", model);
 				} else {
 					response.setStatus(1000);//其他异常返回 1000
-					return new ModelAndView("WEB-INF/jsp/error", model);
+					return new ModelAndView("WEB-INF/page/error", model);
 				}
 		 }else{
 			 try {  
@@ -65,7 +70,7 @@ public class MyExceptionHandler implements HandlerExceptionResolver {
              } catch (IOException e) { 
             	 logger.error("IO异常:{}",e.getMessage());
             	 model.put("ex", e);
-            	 return new ModelAndView("WEB-INF/jsp/error", model);
+            	 return new ModelAndView("WEB-INF/page/error", model);
              }  
              return null;  
 		 }

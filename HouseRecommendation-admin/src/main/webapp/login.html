@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <!-- 禁用屏幕缩放功能 默认缩放比例1.0-->
+    <meta name = "viewport" content="width = device-width,
+                                     initial-scale = 1.0,
+                                     maximum-scale = 1.0,
+                                     user-scalable = no">
+    <!-- 启动最新的IE文档模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <!-- 禁用缓存 -->
+    <meta http-equiv="pragma"          content="no-cache">
+    <meta http-equiv="Cache-Control"   content="no-cache">
+    <meta http-equiv="Expires"         content="0">
+    <title>登录</title>
+    <!-- 网站图标 -->
+    <link rel="icon" type="image/png" href="/static/images/favicon.png">
+    <!-- 图标样式 -->
+    <link rel="stylesheet" type="text/css" href="/static/css/fontello.css">
+    <!-- 外联样式表 -->
+    <link rel="stylesheet" type="text/css" href="/static/css/login_style.css">
+</head>
+<body>
+<div class="container">
+    <div class="panel-box">
+        <div class="panel-title">
+            <h2>房源信息采集管理平台</h2>
+        </div>
+        <div class="panel-content">
+            <form id="login-form" action="javascript:void(0);" class="panel-form">
+                <div class="panel-content-item">
+                    <i class="icon gl-icon-default icon-user icon-user-1"></i>
+                    <input id="gl-user" type="text" name="userName" class="panel-item-input" placeholder="用户名" data-verify = "false">
+                    <i class="icon icon-checked"></i>
+                </div>
+                <div class="panel-content-item">
+                    <i class="icon gl-icon-default icon-pwd icon-lock-1"></i>
+                    <input id="gl-pwd" type="password"  name="userPwd" class="panel-item-input" placeholder="密码" data-verify = "false">
+                    <i class="icon icon-checked"></i>
+                </div>
+                <div class="panel-content-item item-checkbox">
+                    <div class="checkbox-wrap">
+                        <input type="checkbox" class="checkbox-password" title="记住密码">
+                        <span>记住密码</span>
+                        <input type="checkbox" class="checkbox-login" title="记住密码">
+                        <span>自动登录</span>
+                    </div>
+                </div>
+                <div class="panel-content-item">
+                    <button id="login-btn" type="button" class="panel-item-btn btn-default">
+                        <i id="login-sign" class="icon-btn icon-block-1"></i>登录
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="application/javascript" src="/static/js/ajax_1.0.js"></script>
+<script type="application/javascript" src="/static/js/login_event.js"></script>
+</body>
+</html>

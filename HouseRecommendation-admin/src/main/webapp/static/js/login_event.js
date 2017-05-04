@@ -58,10 +58,10 @@ var Glory = {};
      * @function 	                 document.querySelectorAll封装
      * @param       key 	         查询字符串
      */
-    Glory.getNodeList = function (key) {
+     Glory.getNodeList = function (key) {
 
         return doc.querySelectorAll(key);
-    };
+     };
 
     /**
      * 清除文本节点
@@ -159,72 +159,72 @@ var Glory = {};
         return Glory;
     };
 
-    /**
+     /**
      *  绑定事件函数
      *	@param       obj  		      绑定目标对象
      *	@param       eventType	      监听事件
      *	@param       handler		  绑定的事件处理方法
      *	@param       isPropagation	  冒泡方法 默认false：子节点 --> 父节点冒泡	、true：父节点 --> 子节点冒泡
      */
-    Glory.eventListener = function (obj, eventType, handler, isPropagation) {
+     Glory.eventListener = function (obj, eventType, handler, isPropagation) {
 
-        if(!obj || !eventType || !handler) {
-            return;
-        }
+          if(!obj || !eventType || !handler) {
+              return;
+          }
 
-        //Propagation初始化
-        isPropagation = isPropagation || false;
+         //Propagation初始化
+         isPropagation = isPropagation || false;
 
-        //绑定事件到多个对象，递归调用
-        if(obj instanceof Array) {
+         //绑定事件到多个对象，递归调用
+         if(obj instanceof Array) {
 
-            for(var i = 0, len = obj.length; i < len; i++) {
+             for(var i = 0, len = obj.length; i < len; i++) {
 
-                Glory.eventListener(obj[i], eventType, handler, isPropagation);
-            }
+                 Glory.eventListener(obj[i], eventType, handler, isPropagation);
+             }
 
-            //绑定操作结束
-            return;
-        }
+             //绑定操作结束
+             return;
+         }
 
-        //绑定多个事件，递归调用
-        if(eventType instanceof Array) {
+         //绑定多个事件，递归调用
+         if(eventType instanceof Array) {
 
-            for(i = 0, len = eventType.length; i < len; i++) {
+             for(i = 0, len = eventType.length; i < len; i++) {
 
-                Glory.eventListener(obj, eventType[i], handler, isPropagation);
-            }
+                 Glory.eventListener(obj, eventType[i], handler, isPropagation);
+             }
 
-        }
+         }
 
-        //事件绑定完成，结束绑定操作
-        if(eventType instanceof Array) {
-            return;
-        }
+         //事件绑定完成，结束绑定操作
+         if(eventType instanceof Array) {
+             return;
+         }
 
-        //标准事件绑定
-        if(obj.addEventListener) {
+         //标准事件绑定
+         if(obj.addEventListener) {
 
-            obj.addEventListener(eventType, handler, isPropagation);
+             obj.addEventListener(eventType, handler, isPropagation);
 
-            //IE事件绑定
-        }else if(obj.attachEvent) {
+         //IE事件绑定
+         }else if(obj.attachEvent) {
 
-            obj.attachEvent('on' + eventType, handler);
+             obj.attachEvent('on' + eventType, handler);
 
-            //最原始事件绑定
-        }else {
+         //最原始事件绑定
+         }else {
 
-            obj['on' + eventType] = handler;
-        }
-    };
+             obj['on' + eventType] = handler;
+         }
+     };
 
-    /**
-     * @function		                  事件源操作绑定
-     * @param       event	              事件源
-     * @param       handler		      提取事件源对象之后执行的回调
-     */
-    Glory.eventHandler = function(event, handler) {
+     /**
+      * @function		                  事件源操作绑定
+      * @param       event	              事件源
+      * @param       handler		      提取事件源对象之后执行的回调
+      */
+     Glory.eventHandler = function(event, handler) {
 
         //获取事件源
         event = event ? event : win.event;
@@ -233,14 +233,14 @@ var Glory = {};
         var eventObj = event.srcElement ? event.srcElement : event.target;
 
         //执行事件函数
-        handler(eventObj, event);
-    };
+         handler(eventObj, event);
+     };
 
-    /**
+     /**
      *	@function 		                    阻止事件冒泡
      * 	@param	    event               	事件源
      */
-    Glory.stopPropagation = function(event) {
+     Glory.stopPropagation = function(event) {
 
         //标准W3C阻止冒泡方法
         if(event.stopPropagation) {
@@ -274,7 +274,7 @@ var Glory = {};
 
         return(localhostPath + projectName);
     };
-
+    
     //内置ajax框架
     Glory.ajax = win.ajax;
 
@@ -296,50 +296,50 @@ Glory.ready(function () {
 
     //input、focus、blur事件委托实现，把事件绑定到form表单元素，然后向子元素冒泡
     Glory.eventListener(Glory.getNode('login-form'),
-        ['input', 'focus', 'blur'], function (e) {
+                        ['input', 'focus', 'blur'], function (e) {
 
-            //console.log(e.type);
+        //console.log(e.type);
 
-            //事件处理器
-            Glory.eventHandler(e, function (obj, event) {
+        //事件处理器
+        Glory.eventHandler(e, function (obj, event) {
 
-                switch(event.type) {
+            switch(event.type) {
 
-                    case 'input':
-                        //input事件处理
-                        inputHandler(obj);
-                        //登录权限检测
-                        loginCheck();
-                        break;
+                case 'input':
+                    //input事件处理
+                    inputHandler(obj);
+                    //登录权限检测
+                    loginCheck();
+                break;
 
-                    case 'focus':
-                        //focus事件处理
-                        focusHandler(obj);
-                        break;
+                case 'focus':
+                    //focus事件处理
+                    focusHandler(obj);
+                break;
 
-                    case 'blur':
-                        //blur事件处理
-                        blurHandler(obj);
-                        break;
-                }
+                case 'blur':
+                    //blur事件处理
+                    blurHandler(obj);
+                break;
+            }
 
-                //阻止事件继续冒泡
-                Glory.stopPropagation(event);
-            });
+            //阻止事件继续冒泡
+            Glory.stopPropagation(event);
+        });
 
-        }, true);
+    }, true);
 
     //keydoen回车键事件处理
     Glory.eventListener(window, 'keydown', function (e) {
         Glory.eventHandler(e, function (obj, event) {
-            if(event.keyCode == 13) {
-                if(Glory.attr(Glory.getNode('gl-user'), 'data-verify') == 'true' &&
-                    Glory.attr(Glory.getNode('gl-pwd'), 'data-verify') == 'true') {
+           if(event.keyCode == 13) {
+               if(Glory.attr(Glory.getNode('gl-user'), 'data-verify') == 'true' &&
+                   Glory.attr(Glory.getNode('gl-pwd'), 'data-verify') == 'true') {
 
-                    //执行登录事件
-                    clickHandler();
-                }
-            }
+                   //执行登录事件
+                   clickHandler();
+               }
+           }
 
             //阻止事件继续冒泡
             Glory.stopPropagation(event);
@@ -366,33 +366,33 @@ Glory.ready(function () {
      */
     function inputHandler(obj, checkedNode) {
 
-        console.log(obj.type);
+            console.log(obj.type);
 
-        checkedNode = obj.nextSibling.nextSibling;
-        var iconNode = obj.previousSibling.previousSibling;
+            checkedNode = obj.nextSibling.nextSibling;
+            var iconNode = obj.previousSibling.previousSibling;
 
-        if(obj.value.length === 0) {
-            Glory.setClass(obj, 'panel-item-input input-focus');
-            Glory.setClass(checkedNode, 'icon icon-checked');
-            Glory.setClass(iconNode, 'icon gl-icon-default ' +
-                (obj.type == 'text' ? 'icon-user icon-user-1' : 'icon-pwd icon-lock-1'));
-            Glory.attr(obj, 'data-verify', 'false');
+            if(obj.value.length === 0) {
+                Glory.setClass(obj, 'panel-item-input input-focus');
+                Glory.setClass(checkedNode, 'icon icon-checked');
+                Glory.setClass(iconNode, 'icon gl-icon-default ' +
+                    (obj.type == 'text' ? 'icon-user icon-user-1' : 'icon-pwd icon-lock-1'));
+                Glory.attr(obj, 'data-verify', 'false');
 
-        }else if((obj.type == 'password' &&!obj.value.match(/^([a-zA-Z0-9]|[!@#$%^&*()_+=]){5,12}$/)) ||
-            (obj.type == 'text' && !obj.value.match(/^([\u4e00-\u9fa5]|[a-zA-Z0-9_]){2,12}$/))) {
-            Glory.setClass(obj, 'panel-item-input input-warning');
-            Glory.setClass(checkedNode, 'icon icon-checked gl-icon-warning icon-attention-circled');
-            Glory.setClass(iconNode, 'icon gl-icon-warning ' +
-                (obj.type == 'text' ? "icon-user icon-user-1" : "icon-pwd icon-lock-1"));
-            Glory.attr(obj, 'data-verify', 'false');
+            }else if((obj.type == 'password' &&!obj.value.match(/^([a-zA-Z0-9]|[!@#$%^&*()_+=]){6,12}$/)) ||
+                     (obj.type == 'text' && !obj.value.match(/^([\u4e00-\u9fa5]|[a-zA-Z0-9_]){2,12}$/))) {
+                Glory.setClass(obj, 'panel-item-input input-warning');
+                Glory.setClass(checkedNode, 'icon icon-checked gl-icon-warning icon-attention-circled');
+                Glory.setClass(iconNode, 'icon gl-icon-warning ' +
+                               (obj.type == 'text' ? "icon-user icon-user-1" : "icon-pwd icon-lock-1"));
+                Glory.attr(obj, 'data-verify', 'false');
 
-        }else {
-            Glory.setClass(obj, 'panel-item-input input-success');
-            Glory.setClass(checkedNode, 'icon icon-checked gl-icon-success icon-ok-circled');
-            Glory.setClass(iconNode, 'icon gl-icon-success ' +
-                (obj.type == 'text' ? "icon-user icon-user-1" : "icon-pwd icon-lock-1"));
-            Glory.attr(obj, 'data-verify', 'true');
-        }
+            }else {
+                Glory.setClass(obj, 'panel-item-input input-success');
+                Glory.setClass(checkedNode, 'icon icon-checked gl-icon-success icon-ok-circled');
+                Glory.setClass(iconNode, 'icon gl-icon-success ' +
+                    (obj.type == 'text' ? "icon-user icon-user-1" : "icon-pwd icon-lock-1"));
+                Glory.attr(obj, 'data-verify', 'true');
+            }
     }
 
     /**
@@ -446,71 +446,80 @@ Glory.ready(function () {
      */
     function clickHandler() {
 
-        //alert('click: ' + obj.type);
-        var btn  = Glory.getNode('login-btn'),
-            icon = Glory.getNode('login-sign'),
-            nIpt = Glory.getNode('gl-user'),
-            pIpt = Glory.getNode('gl-pwd');
+	   var btn  = Glory.getNode('login-btn'),
+	       icon = Glory.getNode('login-sign'),
+	       nIpt = Glory.getNode('gl-user'),
+	       pIpt = Glory.getNode('gl-pwd');
 
-        alert('name: ' + nIpt.value + ', pwd: ' + pIpt.value);
-
+	   //锁定按钮
         Glory.setClass(icon, 'icon-btn icon-spin4 animate-spin');
         Glory.setClass(btn, 'panel-item-btn btn-default');
         Glory.attr(btn, 'disabled', 'disabled');
-
-        window.setTimeout(function () {
-
-        }, 3000);
 
         //如果存在ajax请求，就终止请求
         if(xhr) {
             xhr.abort();
         }
 
-        xhr = ajax().before(function(xhr){
+       xhr = ajax().before(function(xhr){
             xhr.onabort = function(){
                 console.log('请求被终止');
             }
-        }).get('http://localhost/NEU_LMP/login',{userName: nIpt.value, userPwd: pIpt.value})
-            .success(function(data){
+       		}).post('admin/login',{name: nIpt.value, password: pIpt.value})
+	        .success(function(data){
+	        	
+	        	var result = data.split('&');
+	        	
+	        	//登录成功
+	        	 if(result[0] === 'SUCCESS_SUCCESS') {
+	        		 //保存当前目标内容索引
+	        		 window.sessionStorage && window.sessionStorage.setItem('currentTarget', 'index');
+	        		 //document.cookie && document.cookie
+	        		 /*window.localStorage && window.localStorage.setItem('JSESSIONID', result[1]);*/
+	        		 window.sessionStorage && window.sessionStorage.setItem('JSESSIONID', result[1]);
+	        		 
+	        		 //跳转到首页
+	        		 window.location.href = Glory.getBaseURL() + '/redirect?page=index&JSESSIONID=' + result[1];
+	                 
+	             //登录失败
+	             }else {
+	            	 
+	                 var error = result[0].split('_');
+	                 //按钮样式还原
+	                 Glory.setClass(icon, 'icon-btn icon-block-1');
+	                 Glory.setClass(btn, 'panel-item-btn btn-default');
+	                 
+	                 //用户名错误提示
+	                 if(error[0] === 'ERROR') {
+	                	 Glory.setClass(nIpt, 'panel-item-input input-error');
+	                     Glory.setClass(nIpt.nextSibling.nextSibling, 'icon icon-checked gl-icon-error icon-cancel-circled');
+	                     Glory.setClass(nIpt.previousSibling.previousSibling, 'icon gl-icon-error icon-user icon-user-1');
+	                     Glory.attr(nIpt, 'data-verify', 'false');
+	                 }
+	
+	                 //密码错误提示
+	                 if(error[1] === 'ERROR') {
+	                	 Glory.setClass(pIpt, 'panel-item-input input-error');
+	                     Glory.setClass(pIpt.nextSibling.nextSibling, 'icon icon-checked gl-icon-error icon-cancel-circled');
+	                     Glory.setClass(pIpt.previousSibling.previousSibling, 'icon gl-icon-error icon-pwd icon-lock-1');
+	                     Glory.attr(pIpt, 'data-verify', 'false');
+	                 }
+	             }
 
-                if(data === 'SUCCESS_SUCCESS') {
-                    alert('登录成功!');
-                }else {
-                    var result = data.split('_');
-                    alert("result: " + result);
-
-                    if(result[0] == 'ERROR') {
-                        alert('用户名错误!');
-                    }
-
-                    if(result[1] == 'ERROR') {
-                        alert('密码错误!');
-                    }
-                }
-
-
+	        //请求发生未知错误
             }).error(function(xhr){
-                alert('请求失败！');
+                alert('艹，请求发生未知错误!');
+                Glory.setClass(icon, 'icon-btn icon-login');
+                Glory.setClass(btn, 'panel-item-btn btn-success');
+                Glory.removeAttr(btn, 'disabled');
 
-                Glory.setClass(nIpt, 'panel-item-input input-error');
-                Glory.setClass(nIpt.nextSibling.nextSibling, 'icon icon-checked gl-icon-error icon-cancel-circled');
-                Glory.setClass(nIpt.previousSibling.previousSibling, 'icon gl-icon-error icon-user icon-user-1');
-                Glory.attr(nIpt, 'data-verify', 'false');
-
-                Glory.setClass(pIpt, 'panel-item-input input-error');
-                Glory.setClass(pIpt.nextSibling.nextSibling, 'icon icon-checked gl-icon-error icon-cancel-circled');
-                Glory.setClass(pIpt.previousSibling.previousSibling, 'icon gl-icon-error icon-pwd icon-lock-1');
-                Glory.attr(pIpt, 'data-verify', 'false');
-
-                Glory.setClass(icon, 'icon-btn icon-block-1');
-                Glory.setClass(btn, 'panel-item-btn btn-default');
-
-
-            }).always(function(){
-
-                alert('请求发送完成!');
+            //请求超时
+            }).timeout(10000, function(){
+            	 Glory.setClass(icon, 'icon-btn icon-login');
+                 Glory.setClass(btn, 'panel-item-btn btn-success');
+                 Glory.removeAttr(btn, 'disabled');
             });
-    }
-});
 
+    }
+
+});

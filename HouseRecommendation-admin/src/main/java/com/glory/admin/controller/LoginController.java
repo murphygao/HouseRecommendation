@@ -4,11 +4,13 @@ import com.glory.admin.annotation.ControllerLog;
 import com.glory.admin.service.AdminService;
 import com.glory.admin.service.impl.AdminServiceImpl;
 import com.glory.admin.util.Common;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 登录控制器
@@ -25,10 +27,13 @@ public class LoginController {
     @Autowired
     private AdminService adminService;
 
+    @ResponseBody
     @RequestMapping("login")
     @ControllerLog(module="登录验证",methods="登录控制-验证登录参数")
     public String login(String name, String password) {
-        logger.info("name={}, password={}", name, password);
+        if (StringUtils.isBlank(name)) {
+
+        }
         return Common.BACKGROUND_PATH + "/index";
     }
 

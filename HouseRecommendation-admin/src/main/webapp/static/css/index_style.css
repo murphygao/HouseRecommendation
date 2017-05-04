@@ -29,6 +29,31 @@ div {
     box-sizing: border-box;
 }
 
+
+/**进度条样式*/
+.pace {
+    -webkit-pointer-events: none;
+    pointer-events: none;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.pace-inactive {
+    display: none;
+}
+
+.pace .pace-progress {
+    background: rgba(101, 206, 167,.9);
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    right: 100%;
+    width: 100%;
+    height: 3px;
+}
+
 .gl-container {
     height: 100%;
     width: 100%;
@@ -44,10 +69,42 @@ div {
     text-align: center;
 
 }
-.gl-header .gl-header-wrap {
+.gl-header > .gl-header-wrap {
     height: 100%;
     padding-top: 15px;
     padding-bottom: 15px;
+    position: relative;
+}
+.gl-header > .gl-header-wrap > .gl-userInfo-box {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 280px;
+}
+
+.gl-user-item {
+    float: left;
+}
+
+.gl-user-img {
+    height: 100%;
+    width: 100px;
+    padding-top: 2px;
+}
+.gl-user-img img {
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+}
+.gl-user-info {
+    height: 100%;
+    width: 180px;
+    padding-top: 15px;
+    text-align: left;
+}
+.gl-user-btn{
+    width: 100px;
 }
 
 /**内容样式*/
@@ -99,13 +156,25 @@ div {
     border-bottom: 1px solid #3C3F41;
 }
 
-
-.gl-meun-content dl a.gl-list-group-item:hover,a.gl-list-group-item:active {
-    background-color: #2A323F;
-    background-color: rgba(42, 50, 63, 1);
+.gl-meun-content dl a.gl-list-group-item:hover {
+    background-color: #2A313F;
+    background-color: rgba(42, 49, 63, 1);
     color: #65CEA7;
 
 }
+
+.gl-meun-content dl dt a.gl-dt-active {
+    background-color: #2A323F;
+    background-color: rgba(42, 50, 63, 1);
+    color: #65CEA7;
+}
+
+.gl-meun-content dl dd a.gl-dd-active {
+    background-color: #2A323F;
+    background-color: rgba(42, 50, 63, 1);
+    color: #65CEA7;
+}
+
 dl .gl-icon {
     display: inline-block;
     position: absolute;
@@ -148,6 +217,8 @@ dd .gl-icon-reversal {
 }
 
 
+
+
 /** content样式 */
 .gl-content-box .gl-content {
     height: 100%;
@@ -155,26 +226,26 @@ dd .gl-icon-reversal {
     float: left;
     overflow: hidden;
     border-top: 1px solid rgba(126, 128, 130, .5);
-  /*   background-color: #EFF0F4;
-    background-color: rgba(239, 240, 244, 1); */
+    /*   background-color: #EFF0F4;
+      background-color: rgba(239, 240, 244, 1); */
 }
 .gl-content-box .gl-content > .gl-content-box {
-	 height: 100%;
+    height: 100%;
     width: 100%;
     border: none;
-} 
+}
 .gl-content-box .gl-content .gl-content-wrap {
     height: auto;
     width: 100%;
-    padding: 10px 20px;
+    padding: 10px 20px 20px 20px;
     border: none;
 }
 .gl-content-box .gl-content .gl-content-wrap a {
-	color:#3385FF;
+    color:#3385FF;
 }
 .gl-content-box .gl-content .gl-content-wrap a:hover {
-	color:#2A3AF0;
-	 text-decoration: solid;
+    color:#2A3AF0;
+    text-decoration: solid;
 }
 
 /**滚动条样式覆盖*/
@@ -184,3 +255,75 @@ dd .gl-icon-reversal {
 .mCSB_scrollTools {
     width: 6px;
 }
+
+/**storage 样式*/
+.gl-table tbody tr:nth-child(odd) {
+    background-color: #FFF;
+}
+.gl-table tbody tr:nth-child(even) {
+    background-color: rgba(247, 247, 249, 1);
+}
+.gl-table tbody tr:hover {
+    background-color: rgba(51, 122, 183, .2);
+    cursor: pointer;
+}
+
+.gl-td-text-align{
+    text-align: center;
+}
+
+/** 库房管理样式 */
+.gl-inline-list li:not(:first-child) {
+    margin-left: 20px;
+}
+.gl-select {
+    display: inline-block;
+    width: 150px;
+    height: 25px;
+    line-height: 25px;
+    text-align: left;
+}
+.gl-select option {
+    height: 25px;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+}
+
+.gl-badge {
+    background-color: rgba(91, 192, 222, 1);
+}
+.gl-badge-success {
+    background-color: rgba(51, 122, 183, .8);
+}
+
+/**用户管理模块样式*/
+.gl-user-search-box {
+    width: 100%;
+    height: 50px;
+}
+.gl-user-search-box .gl-search-list-group {
+    height: 30px;
+    position: relative;
+}
+.gl-user-search-box .gl-search-list-group li {
+    float:left;
+}
+.gl-user-search-box .gl-search-list-group li:not(:first-child) {
+    margin-left: 20px;
+}
+.gl-user-search-box .gl-search-list-group li input,select {
+    width: 200px;
+    height: 30px;
+}
+.gl-user-search-box .gl-search-list-group li button {
+    width: 100px;
+    height: 30px;
+}
+
+
+
+
+
+
+
