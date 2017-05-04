@@ -366,7 +366,7 @@ Glory.ready(function () {
      */
     function inputHandler(obj, checkedNode) {
 
-            console.log(obj.type);
+            //console.log(obj.type);
 
             checkedNode = obj.nextSibling.nextSibling;
             var iconNode = obj.previousSibling.previousSibling;
@@ -465,32 +465,29 @@ Glory.ready(function () {
             xhr.onabort = function(){
                 console.log('请求被终止');
             }
-       		}).post('admin/login',{name: nIpt.value, password: pIpt.value})
+       		}).post(Glory.getBaseURL() + '/loginValid', {name: nIpt.value, password: pIpt.value})
 	        .success(function(data){
-	        	
-	        	var result = data.split('&');
-	        	
+	        	console.log(data);
+
 	        	//登录成功
-	        	 if(result[0] === 'SUCCESS_SUCCESS') {
+	        	 if(data.result == true) {
 	        		 //保存当前目标内容索引
 	        		 window.sessionStorage && window.sessionStorage.setItem('currentTarget', 'index');
-	        		 //document.cookie && document.cookie
-	        		 /*window.localStorage && window.localStorage.setItem('JSESSIONID', result[1]);*/
-	        		 window.sessionStorage && window.sessionStorage.setItem('JSESSIONID', result[1]);
+	        		 window.sessionStorage && window.sessionStorage.setItem('JSESSIONID', data.sessionId);
 	        		 
 	        		 //跳转到首页
-	        		 window.location.href = Glory.getBaseURL() + '/redirect?page=index&JSESSIONID=' + result[1];
+	        		 window.location.href = Glory.getBaseURL() + '/index?JSESSIONID=' + data.sessionId;
 	                 
 	             //登录失败
-	             }else {
-	            	 
-	                 var error = result[0].split('_');
+	             } else {
 	                 //按钮样式还原
 	                 Glory.setClass(icon, 'icon-btn icon-block-1');
 	                 Glory.setClass(btn, 'panel-item-btn btn-default');
 	                 
 	                 //用户名错误提示
-	                 if(error[0] === 'ERROR') {
+	                 if(data.resultCode === 'login-1000' ||
+                         data.resultCode === 'login-1001' ||
+                         data.resultCode === 'login-1005') {
 	                	 Glory.setClass(nIpt, 'panel-item-input input-error');
 	                     Glory.setClass(nIpt.nextSibling.nextSibling, 'icon icon-checked gl-icon-error icon-cancel-circled');
 	                     Glory.setClass(nIpt.previousSibling.previousSibling, 'icon gl-icon-error icon-user icon-user-1');
@@ -498,7 +495,9 @@ Glory.ready(function () {
 	                 }
 	
 	                 //密码错误提示
-	                 if(error[1] === 'ERROR') {
+	                 if(data.resultCode === 'login-1002' ||
+                         data.resultCode === 'login-1003' ||
+                         data.resultCode === 'login-1004') {
 	                	 Glory.setClass(pIpt, 'panel-item-input input-error');
 	                     Glory.setClass(pIpt.nextSibling.nextSibling, 'icon icon-checked gl-icon-error icon-cancel-circled');
 	                     Glory.setClass(pIpt.previousSibling.previousSibling, 'icon gl-icon-error icon-pwd icon-lock-1');
@@ -519,7 +518,5 @@ Glory.ready(function () {
                  Glory.setClass(btn, 'panel-item-btn btn-success');
                  Glory.removeAttr(btn, 'disabled');
             });
-
     }
-
 });

@@ -55,18 +55,14 @@ $(document).ready(function () {
     
     //加载用户登录信息
     $.ajax({
-    	url: 'login',
-    	data: {operate: 'userInfo'},
+    	url: getBaseURI() + '/admin/load',
     	dataType: 'json',
-    	success: function(data){
-    		if(data) {
-    			$('#gl-user-name').text(data.userName);
-    			var role = ["系统管理员","客服人员","配送管理员","调度管理员","分站管理员","中心库房管理员","配送员","会计"];
-    			$('#gl-user-type').text(role[data.userRole]);
-    			
+    	success: function(res){
+    		if(res.result == true) {
+    			$('#gl-user-name').text(res.data[0].name);
+    			$('#gl-user-type').text("系统管理员");
     			//缓存用户信息
-    			window.sessionStorage && window.sessionStorage.setItem('user', JSON.stringify(data));
-    			
+    			window.sessionStorage && window.sessionStorage.setItem('admin', JSON.stringify(res.data[0]));
     		}else {
     			layer.msg('加载用户信息错误', {icon: 5});
     		}
@@ -83,7 +79,7 @@ $(document).ready(function () {
 	  	    title: false,
 	  	    area: ['400px', '370px'],
 	  	    /*skin: 'layui-layer-rim', //加上边框*/
-	  	    content: [getBaseURI() + '/redirect?page=modify', 'no']
+	  	    content: [getBaseURI() + '/admin/modifyView', 'no']
       	});
     });
     
@@ -100,7 +96,7 @@ $(document).ready(function () {
     				closeBtn: 1,
     				skin:'layer-ext-moon',
     				yes:function(index){
-        				window.location.href = getBaseURI() + '/login?operate=logout';
+        				window.location.href = getBaseURI() + '/logout';
         			},
         			btn2: function(index){
         				layer.msg('蠢货！！', {icon: 6,time: 2000});
@@ -118,11 +114,11 @@ $(document).ready(function () {
         meunBox.find('dd a').removeClass('gl-dd-active');
         $(this).addClass('gl-dd-active');
     	
-        var targetPage = $(this).attr('data-target') || "";
-        console.log("targetPage: " + targetPage);
+        var targetModel = $(this).attr('data-target') || "";
+        console.log("targetModel: " + targetModel);
         
-        if(targetPage !== "") {
-        	//getPage(targetPage);
+        if(targetModel !== "") {
+        	//getModel(targetModel);
         }
     });
 });
@@ -205,7 +201,7 @@ var Glory = {};
     win.onload = function (e) {
          
          //刷新操作之后加载当前model
-    	 getPage(_getTarget());
+        getModel(_getTarget());
     };
     
 })(Glory, window, jQuery);
@@ -218,7 +214,7 @@ var Glory = {};
  * @param {Object} target       目标页面
  * @param {Object} id       	目标item的id值
  */
-function getPage(target, id) {
+function getModel(target, id) {
 	/**
 	 * 每次ajax请求发起之前，都把请求信息压栈到history对象中
 	 * 同时更新地址栏url
@@ -281,6 +277,7 @@ function getBaseURI(){
 
     //获取带"/"的项目名，如：/SSCS_4
     var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+    console.log("basePath=" + localhostPath + projectName);
     return(localhostPath + projectName);
 }
 

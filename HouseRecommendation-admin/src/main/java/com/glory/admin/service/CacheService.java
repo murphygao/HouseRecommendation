@@ -26,7 +26,7 @@ public interface CacheService {
      * @param key    缓存的key
      * @return       如果key存在返回true, 否则返回false
      */
-    boolean delete(JedisCacheGroup group, String key);
+    boolean remove(JedisCacheGroup group, String key);
 
     /**
      * 获取缓存值

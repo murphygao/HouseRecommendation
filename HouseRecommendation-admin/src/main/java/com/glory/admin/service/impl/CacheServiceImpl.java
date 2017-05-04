@@ -36,13 +36,13 @@ public class CacheServiceImpl implements CacheService {
     }
 
     @Override
-    public boolean delete(JedisCacheGroup group, String key) {
+    public boolean remove(JedisCacheGroup group, String key) {
         boolean delFlag = Boolean.FALSE;
         try {
             delFlag = jedisTemplate.del(group, key);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            throw new BusinessException("缓存删除异常");
+            throw new BusinessException("缓存清除异常");
         }
 
         return delFlag;

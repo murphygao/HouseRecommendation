@@ -1,5 +1,8 @@
 package com.glory.admin.entity.form;
 
+import com.glory.admin.util.CodeMessageEnum;
+
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -18,10 +21,14 @@ public class CommonResult {
     private String resultCode;
     // 时间戳
     private long timestamp;
+    // session会话id
+    private String sessionId;
     // 返回数据
     private List data;
 
     public CommonResult() {
+        this.timestamp = System.currentTimeMillis();
+        this.data = new LinkedList();
     }
 
     public boolean isResult() {
@@ -64,6 +71,24 @@ public class CommonResult {
         this.resultCode = resultCode;
     }
 
+    public void setCodeAndMessage(CodeMessageEnum codeAndMessage) {
+        this.resultCode = codeAndMessage.getCode();
+        this.message = codeAndMessage.getMessage();
+        this.result = codeAndMessage.isResult();
+    }
+
+    public void addData(Object object) {
+        this.data.add(object);
+    }
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
     @Override
     public String toString() {
         return "CommonResult{" +
@@ -71,6 +96,7 @@ public class CommonResult {
                 ", message='" + message + '\'' +
                 ", resultCode='" + resultCode + '\'' +
                 ", timestamp=" + timestamp +
+                ", sessionId='" + sessionId + '\'' +
                 ", data=" + data +
                 '}';
     }

@@ -1,0 +1,183 @@
+@charset "UTF-8";
+
+/** 全局样式 */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p, span, a, b, strong, object, iframe, label, img, select, form, input, textarea, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, menu, nav, section, summary, time, mark, audio, video {margin:0;padding:0}
+article, aside, details, figcaption, figure, footer, header, menu, nav, section {display:block}
+table {border-collapse:collapse;border-spacing:0}
+ul, ol {list-style:none outside none}
+fieldset, img {border:0 none}
+textarea {resize:none}
+input,button,select,textarea{outline:none}
+input:focus, select:focus, textarea:focus {outline:0 none}
+
+a,a:hover, a:link, a:visited, a:active {
+    text-decoration:none;
+    color: #000;
+}
+
+ul,li,a {
+    list-style-type: none;
+}
+
+html,body {
+    height:100%;
+    width: 100%;
+    background-color: rgba(84, 86, 87, .2);
+    margin: 0;
+    padding: 0;
+}
+div {
+    box-sizing: border-box;
+}
+
+
+.container {
+    width: 400px;
+    margin: 0 auto;
+}
+
+
+.gl-modify-box {
+    width: 400px;
+    height: 370px;
+    background-color: rgba(51, 122, 183, .2);
+}
+.gl-modify-box > .gl-modify-panel-box {
+    width: 100%;
+    height: 100%;
+}
+.gl-modify-box > .gl-modify-panel-box >.gl-modify-panel-header {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: #FFF;
+    background-color: #78C478;
+    background-color: rgba(92, 184, 92, .6);
+}
+.gl-modify-box > .gl-modify-panel-box > .gl-modify-panel-content {
+    width: 100%;
+    height: 320px;
+    background-color: rgba(255, 255, 255, .7);
+}
+.gl-modify-box > .gl-modify-panel-box > .gl-modify-panel-content >.gl-modify-panel-form {
+    width: 100%;
+    height: 100%;
+}
+.gl-modify-box > .gl-modify-panel-box > .gl-modify-panel-content .gl-modify-panel-content-item {
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    position: relative;
+}
+
+.gl-modify-box > .gl-modify-panel-box > .gl-modify-panel-content .modify-item-input {
+    color: rgba(108, 111, 112, 1);
+    font-size: 18px;
+    font-weight: 600;
+    width: 80%;
+    height: 50%;
+    border: 1px solid rgba(255, 255, 255, .7);
+    border-radius: 5px;
+    padding-left: 50px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.modify-icon {
+    position: absolute;
+    display: inline-block;
+    width: 40px;
+    height: 50%;
+    top: 21px;
+    left: 46px;
+    box-sizing: border-box;
+    line-height: 50%;
+    font-size: 28px;
+    padding-top: 7px;
+}
+.modify-check-icon {
+    position: absolute;
+    display: inline-block;
+    width: 40px;
+    height: 50%;
+    top: 21px;
+    box-sizing: border-box;
+    line-height: 50%;
+    font-size: 20px;
+    padding-top: 10px;
+}
+
+.gl-input-focus {
+    border: 1px solid rgba(70, 184, 218, .7);
+    box-shadow: 0 0 7px rgba(70, 184, 218, 1);
+}
+
+.gl-input-success {
+    border: 1px solid rgba(0, 200, 45, 1);
+    box-shadow: 0 0 7px rgba(0, 200, 45, 1);
+}
+.gl-input-warning {
+    border: 1px solid rgba(243, 123, 29, 1);
+    box-shadow: 0 0 7px rgba(243, 123, 29, 1);
+}
+.gl-input-error {
+    border: 1px solid rgba(255, 0, 0, 1);
+    box-shadow: 0 0 7px rgba(255, 0, 0, 1);
+}
+
+.gl-icon-success {
+    color: rgba(0, 200, 45, 1);
+}
+.gl-icon-warning {
+    color: rgba(243, 123, 29, 1);
+}
+.gl-icon-error {
+    color: rgba(255, 0, 0, 1);;
+}
+.gl-icon-default {
+    color: rgba(60, 63, 65, 1);
+}
+.gl-icon-focus {
+    color: rgba(70, 184, 218, 1);
+}
+
+.gl-modify-box > .gl-modify-panel-box > .gl-modify-panel-content .modify-item-btn {
+    border: none;
+    position: relative;
+    outline-style: none;
+    padding-left: 25px;
+    margin-top: 5px;
+    width: 50%;
+    height: 55%;
+    border-radius: 6px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #FFF;
+}
+.gl-modify-box > .gl-modify-panel-box > .gl-modify-panel-content .modify-item-btn:hover {
+    cursor: pointer;
+}
+.gl-modify-box > .gl-modify-panel-box > .gl-modify-panel-content .modify-item-btn:active {
+    -webkit-transition: .5s ease width,height;
+    -moz-transition: .5s ease width,height;
+    -o-transition: .5s ease width,height;
+    transition: .5s ease width,height;
+
+    background-color: rgba(0, 200, 45, 1);
+
+    -webkit-transform: scale(1.01,1.01);
+    -moz-transform: scale(1.01,1.01);
+    -ms-transform: scale(1.01,1.01);
+    -o-transform: scale(1.01,1.01);
+    transform: scale(1.01,1.01);
+}
+
+.gl-btn-default {
+    background-color: rgba(118, 209, 127, .9);
+}
+
+.gl-btn-success {
+    background-color: rgba(24, 200, 64, .8);
+}
