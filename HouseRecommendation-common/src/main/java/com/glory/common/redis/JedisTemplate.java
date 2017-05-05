@@ -3,7 +3,7 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  *******************************************************************************/
-package com.glory.admin.redis;
+package com.glory.common.redis;
 
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -20,9 +20,6 @@ import java.util.Map.Entry;
 /**
  * JedisTemplate 提供了一个template方法，负责对Jedis连接的获取与归还。 JedisAction<T> 和
  * JedisActionNoResult两种回调接口，适用于有无返回值两种情况。 同时提供一些最常用函数的封装, 如get/set/zadd等。
- *
- * @author Glory
- * @create 2017-04-21 19:33
  */
 @Service
 public class JedisTemplate {

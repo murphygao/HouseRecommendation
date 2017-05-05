@@ -1,4 +1,4 @@
-package com.glory.admin.util;
+package com.glory.common.encrypt;
 
 import org.apache.commons.codec.digest.DigestUtils;
 

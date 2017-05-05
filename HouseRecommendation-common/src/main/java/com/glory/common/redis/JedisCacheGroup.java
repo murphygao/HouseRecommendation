@@ -1,4 +1,4 @@
-package com.glory.admin.redis;
+package com.glory.common.redis;
 
 /**
  * Redis分组定义

@@ -7,11 +7,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="HouseRecommendation-admin" />
+        <module name="HouseRecommendation-common" />
+        <module name="HouseRecommendation-spider" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="HouseRecommendation" target="1.5" />
       <module name="HouseRecommendation-admin" target="1.8" />
+      <module name="HouseRecommendation-common" target="1.8" />
+      <module name="HouseRecommendation-spider" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

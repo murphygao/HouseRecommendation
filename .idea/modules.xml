@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HouseRecommendation.iml" filepath="$PROJECT_DIR$/HouseRecommendation.iml" />
       <module fileurl="file://$PROJECT_DIR$/HouseRecommendation-admin/HouseRecommendation-admin.iml" filepath="$PROJECT_DIR$/HouseRecommendation-admin/HouseRecommendation-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HouseRecommendation-common/HouseRecommendation-common.iml" filepath="$PROJECT_DIR$/HouseRecommendation-common/HouseRecommendation-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HouseRecommendation-spider/HouseRecommendation-spider.iml" filepath="$PROJECT_DIR$/HouseRecommendation-spider/HouseRecommendation-spider.iml" />
     </modules>
   </component>
 </project>

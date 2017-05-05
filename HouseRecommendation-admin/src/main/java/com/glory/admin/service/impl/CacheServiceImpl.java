@@ -1,9 +1,9 @@
 package com.glory.admin.service.impl;
 
 import com.glory.admin.exception.BusinessException;
-import com.glory.admin.redis.JedisCacheGroup;
-import com.glory.admin.redis.JedisTemplate;
 import com.glory.admin.service.CacheService;
+import com.glory.common.redis.JedisCacheGroup;
+import com.glory.common.redis.JedisTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

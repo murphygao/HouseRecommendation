@@ -4,7 +4,7 @@ import com.glory.admin.entity.Admin;
 import com.glory.admin.exception.BusinessException;
 import com.glory.admin.mapper.AdminMapper;
 import com.glory.admin.service.AdminService;
-import com.glory.admin.util.EncryptUtil;
+import com.glory.common.encrypt.EncryptUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

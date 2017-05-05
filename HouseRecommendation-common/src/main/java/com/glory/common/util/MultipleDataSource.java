@@ -1,4 +1,4 @@
-package com.glory.admin.util;
+package com.glory.common.util;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 

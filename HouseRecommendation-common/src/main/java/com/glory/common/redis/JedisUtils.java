@@ -1,4 +1,4 @@
-package com.glory.admin.redis;
+package com.glory.common.redis;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

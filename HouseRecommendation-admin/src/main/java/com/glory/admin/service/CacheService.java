@@ -1,6 +1,6 @@
 package com.glory.admin.service;
 
-import com.glory.admin.redis.JedisCacheGroup;
+import com.glory.common.redis.JedisCacheGroup;
 
 import java.util.List;
 
