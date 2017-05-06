@@ -86,4 +86,13 @@ public class CacheServiceImpl implements CacheService {
 
         return existsFlag;
     }
+
+    @Override
+    public void expire(JedisCacheGroup group, String key) {
+        try {
+            jedisTemplate.expire(key, JedisCacheGroup.HOUSE_ADMIN_SESSION);
+        } catch (Exception e) {
+            throw new BusinessException("缓存时间刷新异常");
+        }
+    }
 }

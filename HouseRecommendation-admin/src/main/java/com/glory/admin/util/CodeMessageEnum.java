@@ -29,7 +29,10 @@ public enum CodeMessageEnum {
     MODIFY_NEW_EMPTY(14, "modify-1003", false, "新密码为空"),
     MODIFY_NEW_FORMAT_ERROR(15, "modify-1004", false, "新密码格式错误"),
     MODIFY_FAILURE(16, "modify-1005", false, "密码修改失败"),
-    MODIFY_SUCCESS(17, "modify-1006", true, "密码修改成功");
+    MODIFY_SUCCESS(17, "modify-1006", true, "密码修改成功"),
+
+    // 访问权限控制
+    AUTHORIZE_NO_LOGIN(18, "authorize-1000", false, "该会话未经登录授权");
 
     private int index;
     // 结果代码

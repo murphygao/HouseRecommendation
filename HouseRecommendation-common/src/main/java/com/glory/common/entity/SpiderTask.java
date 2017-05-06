@@ -11,6 +11,8 @@ import org.apache.commons.lang3.StringUtils;
  **/
 public class SpiderTask {
 
+    // 爬虫任务队列名称
+    public static final String SPIDER_TASK_QUEUE_NAME = "SpiderTask";
     // 任务id
     private String taskId;
     // 初始URL
@@ -84,6 +86,7 @@ public class SpiderTask {
 
     /**
      * 通过属性计算出唯一key
+     *
      * @return
      */
     public String getUniqueKey() {

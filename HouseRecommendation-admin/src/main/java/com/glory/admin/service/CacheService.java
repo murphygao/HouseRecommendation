@@ -51,4 +51,11 @@ public interface CacheService {
      * @return       如果key存在，返回true，否则返回false
      */
     boolean exists(JedisCacheGroup group, String key);
+
+    /**
+     * 更新缓存存活时间
+     * @param group  缓存分组枚举
+     * @param key    缓存key
+     */
+    void expire(JedisCacheGroup group, String key);
 }

@@ -8,16 +8,14 @@ package com.glory.common.redis;
  */
 public enum JedisCacheGroup {
 
-	//采集任务任务队列
-	HOUSE_LOGINTASK_QUEUE("House:LQ", -1, true),
-	//采集引擎当前正在执行的任务队列
-	HOUSE_CRAWLER("House:Crawler", 60, true),
-	//采集引擎session
-	HOUSE_SESSION("House:Session", 10 * 60, true),
-	//采集日志队列
+	// 采集引擎任务队列
+	HOUSE_SPIDER_TASK("House:SpiderTask", 60, true),
+	// 采集引擎工作队列
+	HOUSE_SPIDER_WORKING("House:SpiderWorking", 10 * 60, true),
+	// 采集日志队列
 	HOUSE_LOG_QUEUE("House:Log", -1, false),
 	// 管理员登录缓存时间
-	HOUSE_ADMIN_SESSION("House:Admin", 20 * 60,false);
+	HOUSE_ADMIN_SESSION("House:AdminSession", 20 * 60,false);
 
 	// 缓存分组名称
 	private String groupName;

@@ -7,10 +7,9 @@ import com.glory.admin.exception.BusinessException;
 import com.glory.admin.service.AdminService;
 import com.glory.admin.service.CacheService;
 import com.glory.admin.util.CodeMessageEnum;
-import com.glory.admin.util.Common;
 import com.glory.admin.util.ValidateUtil;
-import com.glory.common.redis.JedisCacheGroup;
 import com.glory.common.encrypt.EncryptUtil;
+import com.glory.common.redis.JedisCacheGroup;
 import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
@@ -102,23 +101,11 @@ public class LoginController {
         return result;
     }
 
-    @RequestMapping("index")
-    @ControllerLog(module="首页重定向",methods="重定向-验证会话是否已经登录授权")
-    public String redirect(HttpServletRequest request) {
-        // 缓存查询
-        String cacheResult = cacheService.get(JedisCacheGroup.HOUSE_ADMIN_SESSION, request.getSession().getId());
-        if (StringUtils.isBlank(cacheResult)) {
-            logger.error("重定向错误, 会话未登录授权");
-            throw new BusinessException("重定向错误, 会话未登录授权");
-        }
-        return Common.BACKGROUND_PATH + "/index";
-    }
-
     @RequestMapping("logout")
     @ControllerLog(module="注销",methods="注销-清除登录授权")
     public String logout(HttpServletRequest request) {
         // 清除缓存
         cacheService.remove(JedisCacheGroup.HOUSE_ADMIN_SESSION, request.getSession().getId());
-        return "login";
+        return "redirect:login.html";
     }
 }

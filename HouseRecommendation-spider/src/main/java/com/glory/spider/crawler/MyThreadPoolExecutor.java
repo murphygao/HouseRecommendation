@@ -15,7 +15,7 @@ import java.util.concurrent.*;
  **/
 public class MyThreadPoolExecutor extends ThreadPoolExecutor {
 
-    private static final Logger logger = LoggerFactory.getLogger(SpiderConfig.class);
+    private static final Logger logger = LoggerFactory.getLogger(MyThreadPoolExecutor.class);
 
     public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit,
                                 BlockingQueue<Runnable> workQueue) {

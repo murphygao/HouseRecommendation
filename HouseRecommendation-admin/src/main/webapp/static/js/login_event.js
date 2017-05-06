@@ -476,7 +476,7 @@ Glory.ready(function () {
 	        		 window.sessionStorage && window.sessionStorage.setItem('JSESSIONID', data.sessionId);
 	        		 
 	        		 //跳转到首页
-	        		 window.location.href = Glory.getBaseURL() + '/index?JSESSIONID=' + data.sessionId;
+	        		 window.location.href = Glory.getBaseURL() + '/view/index?JSESSIONID=' + data.sessionId;
 	                 
 	             //登录失败
 	             } else {
