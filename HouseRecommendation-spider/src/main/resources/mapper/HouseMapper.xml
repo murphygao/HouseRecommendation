@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--resultType进行结果映射的时候，需要查询出的列名和映射的对象的属性名一致，才能映射成功。
+resultMap进行结果映射的时候，不需要查询的列名和映射的属性名一致。但是要声明一个resultMap来对列名和属性名进行映射。
+比如下面的resultMap，column就是sql查询出来的名称，但是property才是真正的属性名-->
+<mapper namespace="com.glory.spider.mapper.HouseMapper">
+
+    <resultMap id="AdminBaseMap" type="com.glory.spider.entity.House">
+    </resultMap>
+</mapper>

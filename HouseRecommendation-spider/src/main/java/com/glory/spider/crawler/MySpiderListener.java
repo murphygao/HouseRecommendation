@@ -23,12 +23,14 @@ public class MySpiderListener implements SpiderListener {
     // redis缓存服务
     private JedisService jedisService;
 
-    public MySpiderListener() {}
+    public MySpiderListener() {
+        this.jedisService = ApplicationContextUtils.getBean(JedisService.class);
+    }
 
     public MySpiderListener(SpiderConfig spiderConfig, Spider spider) {
+        this();
         this.spiderConfig = spiderConfig;
         this.spider = spider;
-        this.jedisService = ApplicationContextUtils.getBean(JedisService.class);
     }
 
     @Override
@@ -47,7 +49,19 @@ public class MySpiderListener implements SpiderListener {
     public void afterExecute(){
         SpiderTask spiderTask = ThreadContext.get("SpiderTask");
         if(spiderTask != null){
-            jedisService.removeSpiderTask(spiderTask);
+            jedisService.removeSpiderWorking(spiderTask);
         }
+    }
+
+    public void normalExit(String message, String step){
+        //记录上一步解析完成的追中日志
+        //TraceLogger.infoLog(step, ServerResultStatusEnum.SERVER_SUCCESS.getStatus(), message);
+        //记录正常退出的日志
+        //TraceLogger.infoLog(StepEnum.NORMAL_EXIT.getStepName(), ServerResultStatusEnum.SERVER_SUCCESS.getStatus(), message);
+        //updateSession(Session.STATUS_CRAWL_FAIL,message);
+    }
+
+    public void setSpider(Spider spider) {
+        this.spider = spider;
     }
 }

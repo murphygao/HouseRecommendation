@@ -7,8 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * 视图控制器
  *
@@ -23,7 +21,7 @@ public class ViewController {
 
     @RequestMapping("index")
     @ControllerLog(module="首页重定向",methods="重定向-验证会话是否已经登录授权")
-    public String index(HttpServletRequest request) {
+    public String index() {
         return Common.BACKGROUND_PATH + "/index";
     }
 

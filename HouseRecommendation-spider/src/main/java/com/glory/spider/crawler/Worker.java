@@ -8,8 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.stereotype.Service;
+import us.codecraft.webmagic.SpiderListener;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
@@ -19,6 +23,7 @@ import java.util.concurrent.TimeUnit;
  * @author Glory
  * @create 2017-05-05 21:48
  **/
+@Service
 public class Worker {
 
     private static final Logger logger = LoggerFactory.getLogger(Worker.class);
@@ -101,15 +106,12 @@ public class Worker {
                 //每个请求任务开始之前要标记一下正在执行中,线程结束时会移除掉,见MyThreadPoolExecutor
                 jedisService.addSpiderWorking(spiderTask);
 
-               /* Crawler crawler = crawlerClass.newInstance();
-                crawler.setTask(crawlLoginTask);
-                crawler.setCrawlerConfig(crawlerConfig);
-
+                SipderWorker sipderWorker = new SipderWorker(spiderTask, spiderConfig);
                 List<SpiderListener> listeners = new ArrayList<>();
-                listeners.add(new CrawlerListener(crawlLoginTask));
-                crawler.setListener(listeners);
+                listeners.add(new MySpiderListener());
+                sipderWorker.setListener(listeners);
 
-                workerExecutor.submit(crawler);*/
+                workerExecutor.submit(sipderWorker);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);

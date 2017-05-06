@@ -11,13 +11,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  **/
 public class Entry {
 
-    private static final String SPRING_CONTEXT_CONF_FILENAME = "classpath:spring-*.xml";
-
-    private Entry() {
-    }
+    private static final String SPRING_CONFIG_LOCALTIONS = "classpath:spring-*.xml";
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(SPRING_CONTEXT_CONF_FILENAME);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(SPRING_CONFIG_LOCALTIONS);
         context.registerShutdownHook();
         Worker worker = context.getBean(Worker.class);
         worker.setContext(context);

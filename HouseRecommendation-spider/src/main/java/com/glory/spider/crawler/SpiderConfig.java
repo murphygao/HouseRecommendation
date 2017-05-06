@@ -1,6 +1,10 @@
 package com.glory.spider.crawler;
 
+import com.glory.common.constant.SystemConstants;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 /**
  * 爬虫启动配置
@@ -8,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
  * @author Glory
  * @create 2017-05-05 14:44
  **/
+@Component
 public class SpiderConfig {
 
     @Value("#{settings['spider.pool.thread.size.core']}")
@@ -33,6 +38,19 @@ public class SpiderConfig {
 
     @Value("#{settings['spider.shutdown.timeout.seconds']}")
     private int shutdownTimeoutSeconds;
+
+    @Value("#{settings['spider.worker.encode']}")
+    private String spiderWorkerEncode;
+
+    @Value("#{settings['global.debug.switch']}")
+    private Boolean debugSwitch;
+
+    @PostConstruct
+    public void init(){
+        if(debugSwitch != null && debugSwitch == true){
+            System.setProperty(SystemConstants.GLOBAL_DEBUG_SWITCH, "true");
+        }
+    }
 
     public int getThreadPoolSizeCore() {
         return threadPoolSizeCore;
@@ -64,5 +82,13 @@ public class SpiderConfig {
 
     public int getShutdownTimeoutSeconds() {
         return shutdownTimeoutSeconds;
+    }
+
+    public String getSpiderWorkerEncode() {
+        return spiderWorkerEncode;
+    }
+
+    public Boolean getDebugSwitch() {
+        return debugSwitch;
     }
 }

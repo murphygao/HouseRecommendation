@@ -12,7 +12,7 @@
 	</settings>
 
 	<typeAliases>
-		 <!--<typeAlias alias="Admin" type="com.glory.admin.entity.Admin"/>-->
+		 <typeAlias alias="Admin" type="com.glory.spider.entity.House"/>
 	</typeAliases>
 
 	<plugins>
