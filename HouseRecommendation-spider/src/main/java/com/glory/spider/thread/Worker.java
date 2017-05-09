@@ -1,8 +1,10 @@
-package com.glory.spider.crawler;
+package com.glory.spider.thread;
 
 import com.glory.common.entity.SpiderTask;
 import com.glory.common.thread.ShutdownHookUtils;
 import com.glory.common.thread.Threads;
+import com.glory.spider.crawler.MySpiderListener;
+import com.glory.spider.crawler.SpiderConfig;
 import com.glory.spider.service.JedisService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,8 +41,12 @@ public class Worker {
 
     @PostConstruct
     public void init() {
-        workerExecutor = new MyThreadPoolExecutor(spiderConfig.getThreadPoolSizeCore(), spiderConfig.getThreadPoolSizeMax(),
-                0L, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(spiderConfig.getThreadPoolSizeMax()));
+        workerExecutor = new MyThreadPoolExecutor(
+                spiderConfig.getThreadPoolSizeCore(),
+                spiderConfig.getThreadPoolSizeMax(),
+                0L,
+                TimeUnit.MILLISECONDS,
+                new ArrayBlockingQueue<>(spiderConfig.getThreadPoolSizeMax()));
         ShutdownHookUtils.hook(workerExecutor, spiderConfig.getShutdownTimeoutSeconds());
     }
 

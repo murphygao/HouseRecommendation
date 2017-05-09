@@ -1,6 +1,7 @@
-package com.glory.spider.crawler;
+package com.glory.spider.thread;
 
 import com.glory.common.thread.ThreadContext;
+import com.glory.spider.crawler.MySpiderListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -17,7 +18,10 @@ public class MyThreadPoolExecutor extends ThreadPoolExecutor {
 
     private static final Logger logger = LoggerFactory.getLogger(MyThreadPoolExecutor.class);
 
-    public MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit,
+    public MyThreadPoolExecutor(int corePoolSize,
+                                int maximumPoolSize,
+                                long keepAliveTime,
+                                TimeUnit unit,
                                 BlockingQueue<Runnable> workQueue) {
         super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);
     }
@@ -41,10 +45,10 @@ public class MyThreadPoolExecutor extends ThreadPoolExecutor {
             logger.error(myThrowable.getMessage(), myThrowable);
             listener.onError(null);
         }
-        //不管是成功的结束还是有异常的结束,都需要把当前执行的任务标志给移除掉
+        // 不管是成功的结束还是有异常的结束,都需要把当前执行的任务标志给移除掉
         listener.afterExecute();
         super.afterExecute(runnable, throwable);
-        //线程使用完后把MDC及ThreadContext清理掉，防止下次使用时出现赃数据
+        // 线程使用完后把MDC及ThreadContext清理掉，防止下次使用时出现赃数据
         MDC.clear();
         ThreadContext.clear();
     }

@@ -4,6 +4,8 @@ import com.glory.common.entity.SpiderTask;
 import com.glory.common.thread.ThreadContext;
 import com.glory.common.util.ApplicationContextUtils;
 import com.glory.spider.service.JedisService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.SpiderListener;
@@ -15,6 +17,8 @@ import us.codecraft.webmagic.SpiderListener;
  * @create 2017-05-05 15:05
  **/
 public class MySpiderListener implements SpiderListener {
+
+    private static Logger logger = LoggerFactory.getLogger(MyHttpClientGenerator.class);
 
     // webmagic spider
     private Spider spider;
@@ -54,6 +58,7 @@ public class MySpiderListener implements SpiderListener {
     }
 
     public void normalExit(String message, String step){
+        logger.info("爬虫正常退出");
         //记录上一步解析完成的追中日志
         //TraceLogger.infoLog(step, ServerResultStatusEnum.SERVER_SUCCESS.getStatus(), message);
         //记录正常退出的日志

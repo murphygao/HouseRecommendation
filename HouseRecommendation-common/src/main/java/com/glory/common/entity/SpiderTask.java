@@ -17,16 +17,47 @@ public class SpiderTask {
     private String taskId;
     // 初始URL
     private String initUrl;
+    // 初始请求方法
+    private String initMethod;
     // 初始查询参数
     private String initQueryParams;
     // 初始内容
     private String initContent;
+    // Host
+    private String host;
+    // Referer
+    private String referer;
+
     // URL过滤规则
     private String urlFilterPattern;
     // URL提取规则
     private String urlParsePattern;
     // 时间戳
     private String timestamp;
+
+    public String getInitMethod() {
+        return initMethod;
+    }
+
+    public void setInitMethod(String initMethod) {
+        this.initMethod = initMethod;
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public String getReferer() {
+        return referer;
+    }
+
+    public void setReferer(String referer) {
+        this.referer = referer;
+    }
 
     public String getInitUrl() {
         return initUrl;
@@ -119,8 +150,11 @@ public class SpiderTask {
         return "SpiderTask{" +
                 "taskId='" + taskId + '\'' +
                 ", initUrl='" + initUrl + '\'' +
+                ", initMethod='" + initMethod + '\'' +
                 ", initQueryParams='" + initQueryParams + '\'' +
                 ", initContent='" + initContent + '\'' +
+                ", host='" + host + '\'' +
+                ", referer='" + referer + '\'' +
                 ", urlFilterPattern='" + urlFilterPattern + '\'' +
                 ", urlParsePattern='" + urlParsePattern + '\'' +
                 ", timestamp='" + timestamp + '\'' +

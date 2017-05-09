@@ -1,4 +1,4 @@
-package com.glory.spider.crawler;
+package com.glory.common.constant;
 
 import org.apache.commons.lang3.RandomUtils;
 

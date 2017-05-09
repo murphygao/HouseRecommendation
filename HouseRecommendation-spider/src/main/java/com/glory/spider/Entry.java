@@ -1,6 +1,6 @@
 package com.glory.spider;
 
-import com.glory.spider.crawler.Worker;
+import com.glory.spider.thread.Worker;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
